@@ -17,6 +17,18 @@ const MIN_AUTO_DIMENSION = Number(process.env.MIN_AUTO_DIMENSION || 1);
 
 app.disable("x-powered-by");
 
+/** Allow browser clients (e.g. Angular) to POST JSON. */
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Max-Age", "86400");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 app.get("/health", (_req, res) => {
   res.status(200).json({ ok: true });
 });

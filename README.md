@@ -40,7 +40,7 @@ Notes:
 ### Local run
 
 ```bash
-cd tempserver
+cd playright-server
 npm install
 npm start
 ```
@@ -58,13 +58,14 @@ curl -sS -X POST "http://localhost:3000/screenshot" \
 
 Create a **new Railway service** from this repo and set:
 
-- **Root Directory**: `tempserver`
-- **Builder**: Docker (Railway will use `tempserver/Dockerfile`)
+- **Root Directory**: `playright-server`
+- **Builder**: Docker (Railway will use `playright-server/Dockerfile`)
 
 Railway will set `PORT` automatically; the server listens on `process.env.PORT`.
 
 ### Environment variables
 
+- `CORS_ALLOW_ORIGIN` (default `*`): set to your deck web origin if you do not use `*`
 - `MAX_HTML_BYTES` (default `1000000`)
 - `DEFAULT_TIMEOUT_MS` (default `25000`)
 - `DEFAULT_WAIT_AFTER_MS` (default `0`)
